@@ -9,7 +9,8 @@ app.use(cors());
 app.use(express.json());
 app.use(express.static('.'));
 
-const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
+const apiKey = process.env.GEMINI_API_KEY;
+const genAI = new GoogleGenerativeAI(apiKey || '');
 
 app.post('/api/generate', async (req, res) => {
   try {
@@ -19,9 +20,14 @@ app.post('/api/generate', async (req, res) => {
       return res.status(400).json({ error: 'Prompt is required' });
     }
 
-    let systemInstruction = `You are an expert AI content generator for ${tool || 'general content'}. Tone: ${tone || 'professional'}.`;
+    if (!apiKey) {
+      return res.status(500).json({ error: 'GEMINI_API_KEY is not configured in Environment Variables.' });
+    }
 
-    const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
+    const systemInstruction = `You are an expert AI content generator for ${tool || 'general content'}. Tone: ${tone || 'professional'}.`;
+    
+    // Updated active model name
+    const model = genAI.getGenerativeModel({ model: 'gemini-2.5-flash' });
 
     const fullPrompt = `${systemInstruction}\n\nUser Prompt: ${prompt}`;
     const result = await model.generateContent(fullPrompt);
@@ -30,8 +36,8 @@ app.post('/api/generate', async (req, res) => {
 
     res.json({ result: text });
   } catch (error) {
-    console.error('Generation Error:', error);
-    res.status(500).json({ error: 'Failed to generate content' });
+    console.error('Generation Error Details:', error);
+    res.status(500).json({ error: error.message || 'Failed to generate content' });
   }
 });
 
