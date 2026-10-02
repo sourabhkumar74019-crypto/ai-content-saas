@@ -26,7 +26,7 @@ app.post('/api/generate', async (req, res) => {
 
     const systemInstruction = `You are an expert AI content generator for ${tool || 'general content'}. Tone: ${tone || 'professional'}.`;
     
-    // Updated active model name
+    // Updated recommended model string
     const model = genAI.getGenerativeModel({ model: 'gemini-2.5-flash' });
 
     const fullPrompt = `${systemInstruction}\n\nUser Prompt: ${prompt}`;
