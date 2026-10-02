@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI WriteLab - Content Generator SaaS</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- FontAwesome icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="logo">
+                <i class="fa-solid fa-wand-magic-sparkles"></i>
+                <h2>WriteLab<span>.ai</span></h2>
+            </div>
+            
+            <nav class="nav-menu">
+                <a href="#" class="nav-item active"><i class="fa-solid fa-house"></i> Dashboard</a>
+                <a href="#" class="nav-item"><i class="fa-brands fa-instagram"></i> Social Captions</a>
+                <a href="#" class="nav-item"><i class="fa-solid fa-blog"></i> Blog Generator</a>
+                <a href="#" class="nav-item"><i class="fa-solid fa-envelope"></i> Email Scripts</a>
+                <a href="#" class="nav-item"><i class="fa-solid fa-clock-rotate-left"></i> History</a>
+            </nav>
+
+            <div class="user-credits-card">
+                <div class="credits-info">
+                    <span>Remaining Credits</span>
+                    <strong id="credit-count">5 / 5</strong>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="credit-progress" style="width: 100%;"></div>
+                </div>
+                <button class="upgrade-btn"><i class="fa-solid fa-crown"></i> Upgrade Plan</button>
+            </div>
+        </aside>
+
+        <!-- Main Dashboard Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="top-header">
+                <div class="header-title">
+                    <h1>AI Content Studio</h1>
+                    <p>Generate high-converting content with Gemini AI in seconds.</p>
+                </div>
+                <div class="user-profile">
+                    <span class="user-name">Sourabh</span>
+                    <div class="avatar"><i class="fa-solid fa-user"></i></div>
+                </div>
+            </header>
+
+            <!-- Generator Section -->
+            <div class="dashboard-grid">
+                <!-- Prompt Input Box -->
+                <div class="card input-card">
+                    <h3><i class="fa-solid fa-sliders"></i> Prompt Configuration</h3>
+                    
+                    <div class="form-group">
+                        <label>Select Tool</label>
+                        <select id="tool-type">
+                            <option value="caption">Instagram Caption & Hashtags</option>
+                            <option value="blog">Blog Post Outline / Intro</option>
+                            <option value="email">Cold Email / Sales Copy</option>
+                            <option value="ad">Facebook & Google Ad Copy</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Topic / Description</label>
+                        <textarea id="user-prompt" placeholder="E.g., Write a catchy caption for a luxury streetwear brand launch..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Tone of Voice</label>
+                        <select id="tone-type">
+                            <option value="professional">Professional & Direct</option>
+                            <option value="engaging">Engaging & Friendly</option>
+                            <option value="persuasive">Persuasive / High-Converting</option>
+                            <option value="humorous">Casual & Fun</option>
+                        </select>
+                    </div>
+
+                    <button id="generate-btn" class="primary-btn">
+                        <i class="fa-solid fa-bolt"></i> Generate Content
+                    </button>
+                </div>
+
+                <!-- Result Output Box -->
+                <div class="card output-card">
+                    <div class="output-header">
+                        <h3><i class="fa-solid fa-sparkles"></i> AI Generated Result</h3>
+                        <button id="copy-btn" class="icon-btn" title="Copy to Clipboard">
+                            <i class="fa-regular fa-copy"></i> Copy
+                        </button>
+                    </div>
+
+                    <div id="output-box" class="output-content">
+                        <p class="placeholder-text">Your AI-generated response will appear here. Fill out the configuration and click "Generate".</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Pricing Modal -->
+    <div id="pricing-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fa-solid fa-crown"></i> Choose Your Pro Plan</h2>
+                <span id="close-modal" class="close-btn">&times;</span>
+            </div>
+            <p class="modal-sub">Get unlimited AI generation credits and unlock pro templates.</p>
+            
+            <div class="pricing-cards">
+                <div class="price-card">
+                    <h3>Starter</h3>
+                    <div class="price">$10 <span>/ month</span></div>
+                    <ul>
+                        <li><i class="fa-solid fa-check"></i> 100 Credits / month</li>
+                        <li><i class="fa-solid fa-check"></i> Standard Generation Speed</li>
+                        <li><i class="fa-solid fa-check"></i> History Access</li>
+                    </ul>
+                    <button class="plan-btn">Subscribe Starter</button>
+                </div>
+                
+                <div class="price-card featured">
+                    <span class="badge">Most Popular</span>
+                    <h3>Pro Unlimited</h3>
+                    <div class="price">$29 <span>/ month</span></div>
+                    <ul>
+                        <li><i class="fa-solid fa-check"></i> Unlimited AI Credits</li>
+                        <li><i class="fa-solid fa-check"></i> Priority Gemini AI Speed</li>
+                        <li><i class="fa-solid fa-check"></i> All Pro Tools Unlocked</li>
+                    </ul>
+                    <button class="plan-btn primary">Upgrade to Pro</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
